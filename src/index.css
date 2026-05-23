@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #ffffff;
+  color: #263238;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-hsgiDark mb-5;
+}
+
+.section-text {
+  @apply text-base md:text-lg text-gray-600 leading-relaxed;
+}
+
+.card {
+  @apply bg-white rounded-3xl shadow-lg border border-gray-100 p-7 hover:shadow-xl transition duration-300;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-hsgiDark text-white px-7 py-3 font-semibold hover:bg-black transition duration-300;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-full border border-hsgiBlue text-hsgiDark px-7 py-3 font-semibold hover:bg-hsgiBlue hover:text-white transition duration-300;
+}
+``
