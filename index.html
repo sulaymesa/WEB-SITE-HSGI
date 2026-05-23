@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HSGI Ingeniería SAS | Consultoría BIM en conducción de fluidos</title>
+
+  <meta 
+    name="description" 
+    content="HSGI Ingeniería SAS ofrece diseño hidrosanitario, gas, incendio, acueducto y alcantarillado bajo metodología BIM para proyectos de construcción en Latinoamérica." 
+  />
+
+  <style>
+    /* ==============================
+       VARIABLES GENERALES
+    ============================== */
+    :root {
+      --azul: #7dbfe8;
+      --azul-oscuro: #174f78;
+      --verde: #8cf52d;
+      --verde-suave: #eaffdc;
+      --gris: #263238;
+      --gris-suave: #f5f9fb;
+      --blanco: #ffffff;
+      --texto: #4b5563;
+      --sombra: 0 20px 50px rgba(23, 79, 120, 0.12);
+      --radio: 24px;
+      --max-width: 1180px;
+    }
+
+    /* ==============================
+       RESET BÁSICO
+    ============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--blanco);
+      color: var(--gris);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ==============================
+       UTILIDADES
+    ============================== */
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-soft {
+      background: var(--gris-suave);
+    }
+
+    .eyebrow {
+      color: var(--azul-oscuro);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.12;
+      margin-bottom: 20px;
+      color: var(--gris);
+    }
+
+    .section-text {
+      color: var(--texto);
+      font-size: 1.05rem;
+      max-width: 780px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 0.98rem;
+    }
+
+    .btn-primary {
+      background: var(--gris);
+      color: var(--blanco);
+      box-shadow: 0 12px 30px rgba(38, 50, 56, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: #111827;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(23, 79, 120, 0.25);
+      color: var(--azul-oscuro);
+      background: var(--blanco);
+    }
+
+    .btn-secondary:hover {
+      background: var(--azul);
+      color: var(--blanco);
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: var(--blanco);
+      border: 1px solid rgba(23, 79, 120, 0.08);
+      border-radius: var(--radio);
+      padding: 30px;
+      box-shadow: var(--sombra);
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    /* ==============================
+       HEADER
+    ============================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(23, 79, 120, 0.08);
+    }
+
+    .navbar {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: var(--gris);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--verde), var(--azul));
+      display: grid;
+      place-items: center;
+      color: var(--blanco);
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.92rem;
+      color: var(--texto);
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--azul-oscuro);
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+    .hero {
+      padding: 150px 0 90px;
+      background:
+        radial-gradient(circle at top right, rgba(125, 191, 232, 0.35), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(140, 245, 45, 0.22), transparent 34%),
+        linear-gradient(135deg, #ffffff 0%, #f3fbff 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 54px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 15px;
+      background: var(--blanco);
+      border: 1px solid rgba(23, 79, 120, 0.12);
+      border-radius: 999px;
+      color: var(--azul-oscuro);
+      font-weight: 800;
+      font-size: 0.86rem;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(23, 79, 120, 0.08);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      color: var(--gris);
+      margin-bottom: 24px;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.18;
+      color: var(--azul-oscuro);
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      color: var(--texto);
+      font-size: 1.12rem;
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      max-width: 620px;
+    }
+
+    .metric {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(23, 79, 120, 0.08);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.55rem;
+      color: var(--gris);
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--texto);
+      font-size: 0.9rem;
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(23, 79, 120, 0.08);
+      border-radius: 34px;
+      padding: 34px;
+      box-shadow: var(--sombra);
+      position: relative;
+    }
+
+    .visual-logo {
+      height: 180px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 52% 38%, #5fe7e4 0 10%, transparent 11%),
+        radial-gradient(circle at 44% 47%, #5fe7e4 0 9%, transparent 10%),
+        linear-gradient(135deg, rgba(140, 245, 45, 0.24), rgba(125, 191, 232, 0.25));
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-logo::before {
+      content: "";
+      width: 118px;
+      height: 118px;
+      border: 14px solid var(--verde);
+      border-top-color: transparent;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .visual-logo span {
+      position: relative;
+      z-index: 2;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gris);
+      margin-top: 118px;
+    }
+
+    .panel-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel-list li {
+      display: flex;
+      gap: 10px;
+      color: var(--texto);
+      font-weight: 700;
+    }
+
+    /* ==============================
+       PROBLEMA / SOLUCIÓN
+    ============================== */
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, var(--azul-oscuro), var(--gris));
+      color: var(--blanco);
+      border-radius: var(--radio);
+      padding: 34px;
+      box-shadow: var(--sombra);
+    }
+
+    .highlight-box p {
+      color: rgba(255, 255, 255, 0.86);
+      margin-top: 10px;
+    }
+
+    /* ==============================
+       GRIDS
+    ============================== */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--verde-suave);
+      color: var(--azul-oscuro);
+      font-size: 1.4rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: var(--gris);
+    }
+
+    .card p {
+      color: var(--texto);
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .service-item {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--blanco);
+      font-weight: 700;
+    }
+
+    .dark-section {
+      background: var(--gris);
+      color: var(--blanco);
+    }
+
+    .dark-section .section-title,
+    .dark-section h3 {
+      color: var(--blanco);
+    }
+
+    .dark-section .section-text {
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    /* ==============================
+       VALIDACIÓN
+    ============================== */
+    .validation {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(140, 245, 45, 0.24), transparent 34%),
+        linear-gradient(135deg, #f7fcff, #ffffff);
+    }
+
+    .validation-number {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      color: var(--azul-oscuro);
+      line-height: 1;
+      margin: 18px 0;
+    }
+
+    /* ==============================
+       CONTACTO
+    ============================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(23, 79, 120, 0.15);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: 0.2s ease;
+      background: #fbfdff;
+    }
+
+    .form input:focus,
+    .form textarea:focus {
+      border-color: var(--azul);
+      box-shadow: 0 0 0 4px rgba(125, 191, 232, 0.18);
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
+    .footer {
+      background: #111827;
+      color: var(--blanco);
+      padding: 38px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer p {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .split,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3,
+      .service-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 68px 0;
+      }
+
+      .navbar {
+        height: auto;
+        padding: 14px 0;
+      }
+
+      .brand span {
+        font-size: 0.92rem;
+      }
+
+      .hero-metrics,
+      .grid-3,
+      .grid-2,
+      .service-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions,
+      .contact-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ==============================
+       ENCABEZADO
+  ============================== -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="#inicio" class="brand" aria-label="Ir al inicio">
+          <div class="brand-icon">H</div>
+          <span>HSGI INGENIERÍA SAS</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="#problema">Problema</a>
+          <a href="#solucion">Solución</a>
+          <a href="#valor">Valor</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+
+        <a href="#contacto" class="btn btn-primary">Contáctanos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==============================
+         HERO
+    ============================== -->
+    <section id="inicio" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">💧 Consultoría BIM en conducción de fluidos</div>
+
+          <h1>HSGI INGENIERÍA SAS</h1>
+
+          <h2>Ingeniería con propósito. Precisión BIM para construir el futuro.</h2>
+
+          <p>
+            Diseñamos redes hidrosanitarias, gas, protección contra incendio, acueducto
+            y alcantarillado bajo metodología BIM para proyectos de vivienda,
+            institucionales, industriales y comerciales en Latinoamérica.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Contáctanos</a>
+            <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>12+</strong>
+              <span>años de experiencia</span>
+            </div>
+
+            <div class="metric">
+              <strong>500k+</strong>
+              <span>m² diseñados en BIM</span>
+            </div>
+
+            <div class="metric">
+              <strong>B2B</strong>
+              <span>modelo digital especializado</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Resumen visual de HSGI">
+          <div class="visual-logo">
+            <span>HSGI</span>
+          </div>
+
+          <ul class="panel-list">
+            <li>✅ Diseño hidráulico especializado</li>
+            <li>✅ Coordinación BIM remota</li>
+            <li>✅ Enfoque en calidad, confianza y cumplimiento</li>
+            <li>✅ Soluciones para constructoras y consultoras</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==============================
+         PROBLEMA
+    ============================== -->
+    <section id="problema" class="section">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Problema del mercado</p>
+          <h2 class="section-title">
+            La construcción exige BIM, pero faltan firmas especializadas en redes de fluidos.
+          </h2>
+        </div>
+
+        <div class="card">
+          <p>
+            El sector de la construcción en Latinoamérica vive una transformación impulsada
+            por mandatos gubernamentales de digitalización y nuevas exigencias técnicas.
+            Sin embargo, existe una marcada escasez de firmas capaces de integrar la
+            complejidad de redes hidrosanitarias, gas, incendio, acueducto y alcantarillado
+            con la precisión tridimensional y colaborativa que exige BIM.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         SOLUCIÓN
+    ============================== -->
+    <section id="solucion" class="section section-soft">
+      <div class="container split">
+        <div class="highlight-box">
+          <h2>Una solución digital, técnica y escalable.</h2>
+          <p>
+            HSGI entrega ingeniería especializada bajo metodología BIM,
+            reduciendo incompatibilidades, reprocesos y tiempos de coordinación constructiva.
+          </p>
+        </div>
+
+        <div>
+          <p class="eyebrow">Solución propuesta</p>
+          <h2 class="section-title">
+            Coordinación BIM para proyectos que necesitan precisión desde el diseño.
+          </h2>
+          <p class="section-text">
+            La empresa combina experiencia en conducción de fluidos con procesos digitales,
+            coordinación remota y gestión estructurada de información, alineada con buenas
+            prácticas internacionales como ISO 19650.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         PROPUESTA DE VALOR
+    ============================== -->
+    <section id="valor" class="section">
+      <div class="container">
+        <p class="eyebrow">Propuesta de valor</p>
+        <h2 class="section-title">
+          Tres razones por las que HSGI puede competir en el mercado digital B2B.
+        </h2>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">🔧</div>
+            <h3>Especialización técnica de nicho</h3>
+            <p>
+              Fusionamos ingeniería de fluidos compleja con modelado y coordinación BIM
+              tridimensional para proyectos exigentes.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">📐</div>
+            <h3>Estándares internacionales</h3>
+            <p>
+              Aplicamos criterios de gestión de información estructurada, transparente
+              y colaborativa para clientes nacionales e internacionales.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌎</div>
+            <h3>Coordinación digital remota</h3>
+            <p>
+              Rompemos fronteras mediante trabajo remoto, entornos colaborativos y flujos
+              ágiles de comunicación con equipos de diseño y obra.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         SERVICIOS
+    ============================== -->
+    <section id="servicios" class="section dark-section">
+      <div class="container">
+        <p class="eyebrow" style="color: var(--verde);">Producto o servicio principal</p>
+        <h2 class="section-title">
+          Diseños hidrosanitarios, gas, incendio, acueducto y alcantarillado bajo metodología BIM.
+        </h2>
+        <p class="section-text">
+          HSGI presta servicios técnicos para proyectos de vivienda, institucionales,
+          industriales, comerciales y nuevos desarrollos urbanísticos.
+        </p>
+
+        <div class="service-list">
+          <div class="service-item">💧 Diseño hidrosanitario BIM</div>
+          <div class="service-item">🔥 Redes de protección contra incendio</div>
+          <div class="service-item">⛽ Diseño de redes de gas</div>
+          <div class="service-item">🚰 Diseño de acueductos</div>
+          <div class="service-item">🌧 Alcantarillado pluvial y sanitario</div>
+          <div class="service-item">🏗 Coordinación BIM especializada</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         CLIENTE OBJETIVO Y MODELO
+    ============================== -->
+    <section id="cliente" class="section">
+      <div class="container">
+        <div class="grid-2">
+          <article class="card">
+            <p class="eyebrow">Cliente objetivo</p>
+            <h3>Constructoras, consultoras e inversionistas</h3>
+            <p>
+              La solución está dirigida a empresas del sector construcción,
+              firmas consultoras, desarrolladores inmobiliarios y organizaciones
+              que requieren tercerizar diseños técnicos BIM especializados.
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="eyebrow">Modelo de negocio</p>
+            <h3>B2B digital de alto valor agregado</h3>
+            <p>
+              El negocio genera ingresos mediante venta directa de servicios especializados
+              y proyectos desarrollados a través de aliados estratégicos, apalancándose
+              en experiencia técnica, propiedad intelectual e infraestructura digital.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         CANALES DIGITALES
+    ============================== -->
+    <section id="canales" class="section section-soft">
+      <div class="container">
+        <p class="eyebrow">Canales digitales</p>
+        <h2 class="section-title">
+          Presencia digital enfocada en confianza, autoridad técnica y generación de contactos.
+        </h2>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">🌐</div>
+            <h3>Página web</h3>
+            <p>
+              Canal principal para presentar servicios, validar experiencia y captar solicitudes
+              de proyectos.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">💼</div>
+            <h3>LinkedIn</h3>
+            <p>
+              Canal B2B para relacionamiento con constructoras, consultoras, inversionistas
+              y aliados estratégicos.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">✉️</div>
+            <h3>Correo y contacto directo</h3>
+            <p>
+              Canal para cotizaciones, reuniones técnicas, envío de portafolio y seguimiento
+              comercial.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         VALIDACIÓN / MVP
+    ============================== -->
+    <section id="validacion" class="section validation">
+      <div class="container">
+        <p class="eyebrow">Validación del prototipo</p>
+        <h2 class="section-title">Tracción técnica demostrable</h2>
+
+        <div class="validation-number">500.000+ m²</div>
+
+        <p class="section-text" style="margin: 0 auto;">
+          Más de 500.000 metros cuadrados construidos y diseñados bajo metodología BIM
+          en Colombia validan la experiencia de HSGI. Este prototipo web funciona como MVP
+          comercial para captar leads, presentar servicios y medir interés del mercado.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==============================
+         CONTACTO
+    ============================== -->
+    <section id="contacto" class="section">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">Contacto</p>
+          <h2 class="section-title">
+            Hablemos de tu próximo proyecto BIM.
+          </h2>
+          <p class="section-text">
+            Si tu empresa necesita diseños hidrosanitarios, gas, incendio, acueducto
+            o alcantarillado bajo metodología BIM, HSGI puede convertirse en un aliado técnico
+            para reducir riesgos, reprocesos y tiempos de coordinación.
+          </p>
+
+          <div class="contact-buttons">
+            <a href="mailto:contacto@hsgiingenieria.com" class="btn btn-primary">
+              Enviar correo
+            </a>
+            <a href="#" class="btn btn-secondary">
+              WhatsApp empresarial
+            </a>
+          </div>
+
+          <p style="margin-top: 22px; color: var(--texto);">
+            <strong>Correo prototipo:</strong> contacto@hsgiingenieria.com<br />
+            <strong>Canal B2B:</strong> LinkedIn y página web<br />
+            <strong>Ubicación de operación:</strong> Colombia y Latinoamérica
+          </p>
+        </div>
+
+        <div class="card">
+          <form class="form">
+            <input type="text" placeholder="Nombre" aria-label="Nombre" />
+            <input type="email" placeholder="Correo electrónico" aria-label="Correo electrónico" />
+            <input type="text" placeholder="Compañía" aria-label="Compañía" />
+            <input type="tel" placeholder="Teléfono" aria-label="Teléfono" />
+            <textarea rows="5" placeholder="Cuéntanos brevemente sobre tu proyecto" aria-label="Mensaje"></textarea>
+
+            <button type="button" class="btn btn-primary">
+              Contáctanos
+            </button>
+
+            <small style="color: var(--texto); text-align: center;">
+              Formulario visual para prototipo académico. No envía información real.
+            </small>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==============================
+       FOOTER
+  ============================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <strong>HSGI INGENIERÍA SAS</strong>
+        <p>Consultoría en conducción de fluidos bajo metodología BIM.</p>
+      </div>
+
+      <p>
+        © <span id="year"></span> HSGI INGENIERÍA SAS. Prototipo de modelo de negocio digital.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Inserta automáticamente el año actual en el footer.
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
