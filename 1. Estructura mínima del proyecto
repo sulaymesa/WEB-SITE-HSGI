@@ -1,0 +1,16 @@
+hsgi-web/
+│
+├── public/
+│   ├── logo.jpg
+│   └── clientes.png
+│
+├── src/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── index.html
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+└── vite.config.js
